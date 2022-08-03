@@ -2,7 +2,7 @@
 import re
 
 HOUR_BLOCKS_PATH = 'hour_blocks.txt'
-HOUR_BLOCKS_REGEX = r'([a-zA-Z]\w+)'
+HOUR_BLOCKS_REGEX = r'(.*): (.*)'
 
 def get_file_contents(file_path):
 	# TODO: Validate string
