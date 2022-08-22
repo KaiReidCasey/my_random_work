@@ -1,0 +1,8 @@
+// Format is:
+// date in format yyyy-mm-dd
+// weight in pounds, decimal places optional
+// empty line for readability
+// next entry
+
+2022-08-22
+189.0
