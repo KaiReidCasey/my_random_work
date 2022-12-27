@@ -30,7 +30,7 @@ Need a GUI pretty early on.
 Basically, users should be able to determine whether they are doing more, less, or the same amount of the habit
 
 TODO:
-- get a timestamp working in Python (print out a time)
++ get a timestamp working in Python (print out a time)
 - programmatically create a new file and add timestamp to it
 - append or prepend a timestamp to the existing file
 - recall list of timestamps in human-readable form
@@ -39,8 +39,41 @@ TODO:
 - save a timestamp to file any time you press button
 '''
 
+# To allow tracking when events happened
+# Used in get_current_time()
+from datetime import datetime, timezone
+
+'''
+From
+https://docs.python.org/3/library/datetime.html#datetime.datetime.now
+
+"Warning: Because naive datetime objects are treated by many datetime 
+methods as local times, it is preferred to use aware datetimes to 
+represent times in UTC. As such, the recommended way to create an 
+object representing the current time in UTC is by calling 
+datetime.now(timezone.utc)."
+'''
+
+'''
+Returns current time
+TODO: verify works for user's time zone, even when they travel 
+'''
+def get_current_time():
+	return datetime.now()# Attributes: year, month, day, hour, minute, second, microsecond, and tzinfo.
+
 def greet_user():
-	print('Hello! We\'re under construction.')
+	print('Hello! Welcome to my habit tracker.')
+
+def ask_user_if_save_current_time():
+	print(' The current time is: ')
+	print(get_current_time())
+	print('Would you like to save it?')
+	print('Sorry, we\'re under construction.')
+
+def close_habit_tracker():
+	print('Bye!')
+	exit()
 
 greet_user()
-exit()
+ask_user_if_save_current_time()
+close_habit_tracker()
