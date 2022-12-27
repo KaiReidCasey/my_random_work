@@ -27,3 +27,16 @@ Projects:
       - Type 'python unofficial_ssi_calculator.py' without the 's and hit enter.
       - Follow the instructions.
       - Enter '0' (zero) to exit the program.
+3. Habit Tracker
+    - Description:
+      - Program asks if you want to save the current time and can save it in a text file and repeat saved times back to you
+      - Later it will include the ability to add labels to the datetimes and review how often you have done a specific task
+    - Relevant files:
+      - habit_tracker.py
+    - To run:
+      - If you don't have Python installed, get it here: https://www.python.org/downloads/
+      - Download file & save in a folder.
+      - Go to that folder in Command Prompt if using Windows (cd and then the file path).
+      - Type 'python habit_tracker.py' without the 's and hit enter.
+      - Follow the instructions.
+      - Enter '0' (zero) to exit the program.
