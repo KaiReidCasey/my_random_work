@@ -49,6 +49,11 @@ TODO:
 # Used in get_current_time()
 from datetime import datetime, timezone
 
+# To allow grabbing datetimes from saved file
+# Used in read_saved_times()
+# TODO: Look into JSON
+import re
+
 '''
 From
 https://docs.python.org/3/library/datetime.html#datetime.datetime.now
@@ -81,7 +86,14 @@ def save_current_time(file_path):
 def read_saved_times(file_path):
 	print('Saved times include:')
 	time_entry_file = open(file_path,'r')
-	print(time_entry_file.read())
+	time_entry_info = time_entry_file.read()
+
+	lines_in_time_entry_info = re.findall(r'(.*)\n', time_entry_info)
+	for line in lines_in_time_entry_info:
+		print(line) # works
+		# TODO: Convert to datetimes
+		# TODO: Make the datetimes pretty (ie: December 27th, 2022 at 3:02pm)
+	
 	time_entry_file.close()
 
 def greet_user():
