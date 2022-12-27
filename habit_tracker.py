@@ -30,14 +30,19 @@ Need a GUI pretty early on.
 Basically, users should be able to determine whether they are doing more, less, or the same amount of the habit
 
 TODO:
-+ get a timestamp working in Python (print out a time)
-+ programmatically create a new file and add timestamp to it
-+ append or prepend a timestamp to the existing file
-- Clean up user selection options
-- recall list of timestamps in human-readable form
++ get a datetimes working in Python (print out a time)
++ programmatically create a new file and add datetimes to it
++ append or prepend a datetimes to the existing file
++ Clean up user selection options
+- recall list of datetimes in human-readable form
+- add a label when saving datetimes
+- create a list of valid labels in their own text file
+- validate labels before adding to datetimes
+- add ability for user to add to the list of valid labels
+- add ability for user to subtract from the list of valid labels
 - get a super basic UI going on Windows desktop/laptop
 - add a button
-- save a timestamp to file any time you press button
+- save a datetimes to file any time you press button
 '''
 
 # To allow tracking when events happened
@@ -64,18 +69,15 @@ TODO: verify works for user's time zone, even when they travel
 def get_current_time():
 	return datetime.now()# Attributes: year, month, day, hour, minute, second, microsecond, and tzinfo.
 
-'''
-Expects file path to .txt file, existing or not
-'''
+# Expects file path to .txt file, existing or not
 def save_current_time(file_path):
-	print('We\'re under construction!')
-	print('Can\'t save current time yet!')
 	time_entry_file = open(file_path,'a')
 	time_entry_file.write(str(get_current_time()))
 	time_entry_file.write('\n')
 	print('Time successfully saved!')
 	time_entry_file.close()
 
+# Expects file path to .txt file, existing or not
 def read_saved_times(file_path):
 	print('Saved times include:')
 	time_entry_file = open(file_path,'r')
@@ -89,31 +91,37 @@ def display_time_for_user():
 	print(' The current time is: ')
 	print(get_current_time())
 
-def ask_user_if_save_current_time():
+def get_and_respond_to_user_selection():
 	display_time_for_user()
-	print('Would you like to save it?')
+	print('What would you like to do?')
 	# get user input with error handling
-	try:
-		option_selected = str(input('Enter yes, no, or exit: \n> ').lower())
-		# react to user input
-		if(option_selected == 'y' or option_selected == 'yes'):
-			save_current_time(SAVED_TIME_ENTRIES_PATH)
-			read_saved_times(SAVED_TIME_ENTRIES_PATH)
-		elif(option_selected == 'n' or option_selected == 'no'):
-			# ask again for now since there aren't other options
-			print('We don\'t have other options yet...')
-			ask_user_if_save_current_time()
-		elif(option_selected == 'e' or option_selected == 'exit'):
-			close_habit_tracker()
-		else:
-			print('Incorrect selection. Please enter either yes or no.')
-	finally:
-		print('Thank you!')
+	option_selected = -1
+	while option_selected != 0:
+		print('\nPlease select an option from the following:')
+		print('1 - Save the current time')
+		print('2 - Read the current time')
+		print('3 - Read saved times')
+		print('0 - Exit the program')
+		try:
+			option_selected = int(input('> '))
+			# react to user input
+			if(option_selected == 1):
+				save_current_time(SAVED_TIME_ENTRIES_PATH)
+			elif(option_selected == 2):
+				display_time_for_user()
+			elif(option_selected == 3):
+				read_saved_times(SAVED_TIME_ENTRIES_PATH)
+			elif(option_selected == 0):
+				close_habit_tracker()
+			else:
+				print('Incorrect selection. Please enter 1, 2, 3, or 0.')
+		except ValueError:
+			print('Incorrect selection. Please enter a valid number.')
 
 def close_habit_tracker():
-	print('Bye!')
+	print('Thanks for using my habit tracker! Bye!')
 	exit()
 
 greet_user()
-ask_user_if_save_current_time()
+get_and_respond_to_user_selection()
 close_habit_tracker()
